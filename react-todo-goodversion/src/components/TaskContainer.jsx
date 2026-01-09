@@ -1,11 +1,12 @@
 import TaskCounter from "./TaskCounter"
 import Tasks from "./Tasks"
 
-export default function TaskContainer(){
+export default function TaskContainer({tasks}){
+    let taskAmount = tasks.length
     return (
         <section>
-            <TaskCounter></TaskCounter>
-            <Tasks></Tasks>
+            <TaskCounter amount={taskAmount}></TaskCounter>
+            <Tasks tasks={tasks}></Tasks>
         </section>
     )
 }

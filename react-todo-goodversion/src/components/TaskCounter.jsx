@@ -1,7 +1,7 @@
-export default function TaskCounter(){
+export default function TaskCounter({amount}){
     return (
         <div>
-            4 task in questa lista
+            {amount} task in questa lista
         </div>
     )
 }
