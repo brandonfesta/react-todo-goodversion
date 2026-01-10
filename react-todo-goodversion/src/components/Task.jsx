@@ -1,9 +1,9 @@
-export default function Task({task, deleteTask}){
+export default function Task({task, deleteTask, updateTaskCompletion}){
     return (
-        <li>
-            <input type="checkbox" checked={task.isCompleted}/>
+        <li className={task.isCompleted ? "completed" : ""}>
+            <input type="checkbox" checked={task.isCompleted} onChange={() => updateTaskCompletion(task.id)}/>
             {task.name}
-            <button className="btn">Modifica</button>
+            {/* <button className="btn">Modifica</button> */}
             <button className="btn"  onClick={() => deleteTask(task.id)}>Elimina</button>
         </li>
     )

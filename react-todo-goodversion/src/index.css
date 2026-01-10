@@ -21,3 +21,6 @@ input{
 .filters-container{
   margin: 1rem 0;
 }
+.completed{
+  background-color: brown;
+}

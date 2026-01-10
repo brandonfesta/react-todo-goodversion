@@ -14,13 +14,21 @@ export default function App() {
     let remainingTasks = tasks.filter(task => task.id !== id)
     setTasks(remainingTasks)
   }
+  function updateTaskCompletion(id){
+    let updatedTasks = tasks.map((task) => {
+      if(task.id === id){
+        return {...task, isCompleted: !task.isCompleted}
+      }
+    })
+    setTasks(updatedTasks)
+  }
   return (
     <>
       <h1>I miei task</h1>
       <div className='task-app'>
         <Form addTask={addTask}></Form>
         <Filters></Filters>
-        <TaskContainer tasks={tasks} deleteTask={deleteTask}></TaskContainer>
+        <TaskContainer tasks={tasks} deleteTask={deleteTask} updateTaskCompletion={updateTaskCompletion}></TaskContainer>
       </div>
     </>
   )
