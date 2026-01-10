@@ -1,9 +1,9 @@
 import Task from "./Task"
 
 
-export default function Tasks({tasks}){
+export default function Tasks({tasks, deleteTask}){
     let taskList = tasks.map((task) => 
-        <Task task={task} key={task.id}></Task>
+        <Task task={task} deleteTask={deleteTask} key={task.id}></Task>
     )
 
     return(
