@@ -1,11 +1,18 @@
-import { useState, useRef } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import Form from './components/Form'
 import Filters from './components/Filters'
 import TaskContainer from './components/TaskContainer'
 import { nanoid } from 'nanoid'
 
+let savedTasks = JSON.parse(localStorage.getItem("tasks"))
+
 export default function App() {
-  const [tasks, setTasks] = useState([])
+  const [tasks, setTasks] = useState(savedTasks)
+
+  useEffect(() => {
+    localStorage.setItem("tasks", JSON.stringify(tasks))
+  }, [tasks])
+
   function addTask(inputValue){
     let newObject = {name: inputValue, isChecked: false, id: nanoid(),}
     setTasks([newObject, ...tasks])
