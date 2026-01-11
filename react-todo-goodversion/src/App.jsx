@@ -7,14 +7,14 @@ import { nanoid } from 'nanoid'
 let savedTasks = JSON.parse(localStorage.getItem("tasks"))
 
 export default function App() {
-  const [tasks, setTasks] = useState(savedTasks)
+  const [tasks, setTasks] = useState(savedTasks || [])
 
   useEffect(() => {
     localStorage.setItem("tasks", JSON.stringify(tasks))
   }, [tasks])
 
   function addTask(inputValue){
-    let newObject = {name: inputValue, isChecked: false, id: nanoid(),}
+    let newObject = {name: inputValue, isCompleted: false, id: nanoid(),}
     setTasks([newObject, ...tasks])
   }
   function deleteTask(id){
@@ -27,6 +27,7 @@ export default function App() {
         return {...task, isCompleted: !task.isCompleted}
       }
     })
+    console.log(updatedTasks)
     setTasks(updatedTasks)
   }
   return (
