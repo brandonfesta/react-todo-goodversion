@@ -15,7 +15,7 @@ input{
   padding: 0.5rem;
 }
 .btn{
-  background-color: lightblue;
+  background-color: rgb(153, 191, 204);
   padding: 0.5rem 1rem;
 }
 .filters-container{
