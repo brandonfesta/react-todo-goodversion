@@ -22,13 +22,13 @@ export default function App() {
     setTasks(remainingTasks)
   }
   function updateTaskCompletion(id){
-    let updatedTasks = tasks.map((task) => {
-      if(task.id === id){
-        return {...task, isCompleted: !task.isCompleted}
-      }
-    })
-    console.log(updatedTasks)
-    setTasks(updatedTasks)
+    setTasks(prevTasks =>
+      prevTasks.map(task =>
+        task.id === id
+          ? { ...task, isCompleted: !task.isCompleted }
+          : task
+      )
+    )
   }
   return (
     <>
