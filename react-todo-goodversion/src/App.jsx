@@ -2,12 +2,28 @@ import { useState, useRef, useEffect } from 'react'
 import Form from './components/Form'
 import Filters from './components/Filters'
 import TaskContainer from './components/TaskContainer'
+import TextFilter from './components/TextFilter'
 import { nanoid } from 'nanoid'
 
 let savedTasks = JSON.parse(localStorage.getItem("tasks"))
 
 export default function App() {
   const [tasks, setTasks] = useState(savedTasks || [])
+  const [filter, setFilter] = useState("tutti")
+  const [textFilter, setTextFilter] = useState("")
+
+  let filteredTask = tasks.filter(task => {
+    if(filter === ""){
+      setFilter("tutti")
+    }
+    if(filter === "tutti"){
+      return true
+    } 
+  }).filter(task => {
+    if(task.name.includes(textFilter)){
+      return true
+    }
+  })
 
   useEffect(() => {
     localStorage.setItem("tasks", JSON.stringify(tasks))
@@ -36,6 +52,7 @@ export default function App() {
       <div className='task-app'>
         <Form addTask={addTask}></Form>
         <Filters></Filters>
+        <TextFilter textFilter={textFilter} setTextFilter={setTextFilter}></TextFilter>
         <TaskContainer tasks={tasks} deleteTask={deleteTask} updateTaskCompletion={updateTaskCompletion}></TaskContainer>
       </div>
     </>
